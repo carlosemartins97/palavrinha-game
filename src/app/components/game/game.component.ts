@@ -27,6 +27,7 @@ export class GameComponent implements OnInit {
   subscription: Subscription;
   showNewLevelButton: boolean = false;
   showResetLevelButton: boolean = false;
+  wrongLetters: any = this.gameService.getWrongLetters();
 
   ngOnInit(): void {
     this.gameService.initWord();
@@ -52,6 +53,7 @@ export class GameComponent implements OnInit {
 
   matchWords() {
     this.gameService.matchButtonClicked.emit(this.tries.length-1);
+    this.wrongLetters = this.gameService.getWrongLetters();
   }
 
   setLevel() {

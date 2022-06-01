@@ -141,6 +141,7 @@ export class InputLetterComponent implements OnInit {
         }
       } else {
         this.word[i].color = 'default';
+        this.gameService.saveWrongLetters(this.word[i].letter);
       }
     })
   }

@@ -20,6 +20,7 @@ export class GameService {
       this.setWord(1);
       this.setLevel(1);
       this.newTry();
+      this.initWrongLetters();
     }
   }
 
@@ -36,6 +37,7 @@ export class GameService {
     this.setLevel(currentLevel + 1);
     this.setWord(currentLevel + 1);
     this.clearTries();
+    this.clearLetters();
   }
 
   setWord(indice: number) {
@@ -94,5 +96,30 @@ export class GameService {
       }]
       localStorage.setItem('@palavrinha/tries', JSON.stringify(tryObject));
     }
+  }
+
+  saveWrongLetters(letter?: string) {
+    const letterWithoutParse = localStorage.getItem('@palavrinha/wrongLetters');
+    if(letterWithoutParse !== null && letter) {
+      const letters: any = JSON.parse(letterWithoutParse);
+      if(!letters.wrongLetters.includes(letter)) {
+        letters.wrongLetters.push(letter);
+      }
+      console.log(letters);
+      localStorage.setItem('@palavrinha/wrongLetters', JSON.stringify(letters));
+    }
+  }
+
+  initWrongLetters() {
+    localStorage.setItem('@palavrinha/wrongLetters', JSON.stringify({wrongLetters: []}));
+  }
+
+  clearLetters() {
+    this.initWrongLetters();
+  }
+
+  getWrongLetters(): string[] {
+    const letters = localStorage.getItem('@palavrinha/wrongLetters');
+    return JSON.parse(letters!);
   }
 }
