@@ -20,10 +20,6 @@ export class TecladoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngDoCheck() {
-    console.log(this.wrongLetters)
-  }
-
   setKey(button: HTMLButtonElement) {
     const letter = button.innerHTML.toUpperCase();
     this.gameService.keyboardClicked.emit(letter);

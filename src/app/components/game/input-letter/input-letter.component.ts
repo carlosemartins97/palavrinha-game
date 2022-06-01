@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { words, wordsThatExist } from 'src/assets/words/words';
 import { GameService } from '../../game.service';
 
 @Component({
@@ -23,6 +24,9 @@ export class InputLetterComponent implements OnInit {
   ]
   tries: {tentativa: number, word: string[] }[]
   matchSub: Subscription;
+  wordList = words;
+  wordsThatExists = wordsThatExist;
+  indexOfLetters: any[] = [];
 
 
 
@@ -48,7 +52,12 @@ export class InputLetterComponent implements OnInit {
       this.gameService.eraseClicked.subscribe(() => this.handleErase());
 
       this.matchSub = this.gameService.matchButtonClicked.subscribe((number) =>  {
-        this.index === number && this.matchWords()
+        const joinedWord = this.word.map(item => {
+          return item.letter
+        }).join('').toLowerCase();
+        this.index === number && this.wordsThatExists.includes(joinedWord) && this.matchWords()
+
+        !this.wordsThatExists.includes(joinedWord) && alert('Essa palavra não existe! Tente novamente.')
       }
       );
     }
@@ -134,7 +143,9 @@ export class InputLetterComponent implements OnInit {
     this.word.forEach((el, i) => {
       if(this.activeWord?.includes(el.letter !== undefined ? el.letter.toLowerCase() : el.letter) === true) {
         const letterIndexOnWordArray = this.activeWord?.indexOf(el.letter !== undefined ? el.letter.toLowerCase() : el.letter);
-        if(i === letterIndexOnWordArray) {
+        const letterIndexStartingEnd = this.activeWord?.lastIndexOf(el.letter !== undefined ? el.letter.toLowerCase() : el.letter);
+
+        if(i === letterIndexOnWordArray || i === letterIndexStartingEnd) {
           this.word[i].color = 'green';
         } else {
           this.word[i].color = 'yellow';
