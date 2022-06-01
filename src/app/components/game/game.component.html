@@ -10,6 +10,10 @@
       <button (click)="changeLevel()">Próximo Level</button>
     </div>
 
+    <div class="game-container__content__buttonLevel" *ngIf="showResetLevelButton">
+      <button (click)="changeLevel()" class="tryagain">Tentar novamente</button>
+    </div>
+
     <app-input-letter
       *ngFor="let try of tries; let i = index"
       [isActive]="i === activeTry"

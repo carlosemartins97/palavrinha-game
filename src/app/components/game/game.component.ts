@@ -26,6 +26,7 @@ export class GameComponent implements OnInit {
   activeTry: number;
   subscription: Subscription;
   showNewLevelButton: boolean = false;
+  showResetLevelButton: boolean = false;
 
   ngOnInit(): void {
     this.gameService.initWord();
@@ -35,10 +36,16 @@ export class GameComponent implements OnInit {
     
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
-      level === this.level && setTimeout(() => {
-        this.tries = this.gameService.getTries();
-        this.activeTry = this.tries.length - 1;
-      }, 600)
+      if(this.tries.length === 5) {
+        setTimeout(() => {
+          this.showResetLevelButton = true;
+        }, 600)
+      } else {
+        level === this.level && setTimeout(() => {
+          this.tries = this.gameService.getTries();
+          this.activeTry = this.tries.length - 1;
+        }, 600)
+      }
     });
     
   }
@@ -48,11 +55,14 @@ export class GameComponent implements OnInit {
   }
 
   setLevel() {
-    this.showNewLevelButton = true;
+    setTimeout(() => {
+      this.showNewLevelButton = true;
+    }, 600)
   }
 
   changeLevel() {
     this.router.navigate(['/']);
+    this.gameService.clearTries();
   }
 
   ngOnDestroy() {
