@@ -1,0 +1,32 @@
+<div class="game-container">
+  <div class="game-container__content">
+    <h1 class="game-container__content__title">
+      <span>P</span>alavrinha
+    </h1>
+
+    <p class="game-container__content__level">Level <strong>{{level}}</strong> de <strong>{{totalOfLevels}}</strong></p>
+
+    <div class="game-container__content__buttonLevel" *ngIf="showNewLevelButton">
+      <button (click)="changeLevel()">Próximo Level</button>
+    </div>
+
+    <app-input-letter
+      *ngFor="let try of tries; let i = index"
+      [isActive]="i === activeTry"
+      [index]="i"
+      (level)="setLevel()"
+    ></app-input-letter>
+
+    <div class="game-container__content__controls">
+      <div class="game-container__content__controls__teclado">
+        <app-teclado
+        ></app-teclado>
+      </div>
+      <div class="game-container__content__controls__enter">
+        <button type="button" class="enter" (click)="matchWords()">
+          enter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

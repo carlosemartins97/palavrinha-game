@@ -1,0 +1,7 @@
+<div class="game-container__content__box">
+  <div class="input-letra__container" *ngFor="let letter of word; let i = index">
+    <span class="input-letra__container__letra {{letter.color}}">
+      {{letter ? letter.letter : ' '}}
+    </span>
+  </div>
+</div>

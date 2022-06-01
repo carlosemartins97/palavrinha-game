@@ -1,0 +1,14 @@
+<div class="teclado">
+  <div class="teclado__first">
+    <button *ngFor="let btn of firstKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(element)">{{btn}}</button>
+  </div>
+  <div class="teclado__second">
+    <button *ngFor="let btn of secondKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(element)">{{btn}}</button>
+  </div>
+  <div class="teclado__third">
+    <button *ngFor="let btn of thirdKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(element)">{{btn}}</button>
+    <button type="button" id="bt_back" (click)="onErase()">
+      <img src="assets/img/delete.png" alt="delete icon">
+    </button>
+  </div>
+</div>
