@@ -16,7 +16,7 @@
       </div>
 
       <div class="info__box">
-        <p class="info__box__number">{{(((level-1) / (stats.reset + (level-1)) ) * 100).toFixed(2)}}</p>
+        <p class="info__box__number">{{level > 1 ? (((level-1) / (stats.reset + (level-1)) ) * 100).toFixed(2) : 0}}</p>
         <p>% de vitórias</p>
       </div>
 
