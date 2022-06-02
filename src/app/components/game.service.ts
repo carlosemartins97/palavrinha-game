@@ -15,7 +15,7 @@ export class GameService {
   constructor() { }
 
   initWord() {
-    if(this.getLevel() === 1) {
+    if(this.getLevel() === 1 || this.getLevel() === 0) {
       this.setLevel(1);
       this.newTry();
       this.initWrongLetters();
