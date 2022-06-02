@@ -1,16 +1,12 @@
 @import 'colors';
 
 .game-container__content__box {
-  padding: 12px 0;
+  padding: 6px 0;
   max-width: 440px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-
-  @media(max-width: 768px) {
-    padding: 6px 0;
-  }
 
   .input-letra__container {
     background: $dark2;
