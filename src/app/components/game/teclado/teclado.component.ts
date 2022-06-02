@@ -11,7 +11,7 @@ export class TecladoComponent implements OnInit {
   @Input() wrongLetters: {wrongLetters: string[]};
 
   firstKeys = ['q','w','e','r','t','y','u','i','o','p'];
-  secondKeys = ['a','s','d','f','g','h','j','k','l', 'ç'];
+  secondKeys = ['a','s','d','f','g','h','j','k','l'];
   thirdKeys = ['z','x','c','v','b','n','m'];
 
 
