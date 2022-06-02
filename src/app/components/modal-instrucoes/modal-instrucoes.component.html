@@ -1,0 +1,58 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Como jogar</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">Fechar</button>
+  </div>
+  <div class="modal-body">
+    <div class="text">
+      <p>A cada nível, existe uma palavra misteriosa de apenas 5 letras que você deverá adivinhar. Para isso, você terá 5 tentativas e em cada uma delas você deverá inserir uma palavra existente.</p>
+      <p>Após cada tentativa, você verá o indicador de quais letras você acertou ou passou raspando, tendo assim, dicas para seu próximo chute.</p>
+      <p>Acentos e cedilha são ignorados, tanto nas tentativas, quanto na resposta.</p>
+      <p>Após cada tentativa falha, as teclas incorretas serão desabilitadas e não será possível o uso delas até o próximo nível.</p>
+    </div>
+    <div class="examples-container">
+      <h5>Exemplos</h5>
+      <div class="examples">
+        <p>Letra verde significa que ela está presente na palavra e na posição correta.</p>
+
+        <div class="examples-letter">
+          <span>J</span>
+          <span>O</span>
+          <span class="green">G</span>
+          <span>A</span>
+          <span>R</span>
+        </div>
+      </div>
+
+      <div class="examples">
+        <p>Letra amarela significa que ela está presente na palavra, mas na posição errada.</p>
+
+        <div class="examples-letter">
+          <span>T</span>
+          <span class="yellow">O</span>
+          <span>R</span>
+          <span>T</span>
+          <span>A</span>
+        </div>
+      </div>
+
+      <div class="examples">
+        <p>Letra sem fundo significa que ela não existe na palavra atual.</p>
+
+        <div class="examples-letter">
+          <span>P</span>
+          <span>A</span>
+          <span>L</span>
+          <span>M</span>
+          <span>A</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="instrucoes">
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+    <fa-icon [icon]="faCircleQuestion" size="lg"></fa-icon>
+  </button>
+</div>

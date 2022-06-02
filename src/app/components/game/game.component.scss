@@ -8,6 +8,16 @@
     margin: 0 auto;
     max-width: 1280px;
     padding: 32px;
+
+    @media(max-width: 768px) {
+      padding: 16px;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     &__title {
       text-align: center;
       color: $white;
@@ -17,6 +27,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 0;
 
       span {
         background: $green;

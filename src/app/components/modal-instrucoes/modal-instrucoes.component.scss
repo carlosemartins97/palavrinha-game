@@ -1,0 +1,79 @@
+@import 'colors';
+
+.instrucoes {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    color: $green;
+    font-weight: 900;
+    font-size: 28px;
+    height: 60px;
+    border: none;
+
+    &:hover, &:focus {
+      background: unset;
+      color: $white;
+      box-shadow: unset;
+    }
+  }
+}
+
+::ng-deep .modal-instrucoes {
+  max-width: 720px;
+
+  .modal-title,
+  .modal-body,
+  .modal-content {
+    color: $dark;
+
+    p {
+      margin-bottom: 8px;
+    }
+  }
+
+  .modal-header {
+    align-items: center;
+    .btn-close {
+      background: $dark2;
+      color: $white;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 8px 16px;
+      border: none;
+    }
+  }
+
+  .modal-body {
+
+    h5 {
+      margin: 16px 0 8px;
+    }
+    .examples-letter {
+      display: flex;
+      margin-bottom: 16px;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: $dark2;
+        color: $light-gray;
+        border-radius: 8px;
+        margin-right: 8px;
+        font-weight: bold;
+
+        &.green {
+          background: $green;
+        }
+
+        &.yellow {
+          background: $yellow;
+        }
+      }
+    }
+  }
+}
