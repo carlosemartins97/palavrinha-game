@@ -41,7 +41,7 @@ export class GameComponent implements OnInit {
     this.wrongLetters = this.gameService.getWrongLetters();
 
     const stats: Stats = JSON.parse(localStorage.getItem('@palavrinha/stats')!);
-    if(stats === null || stats.timeToPlayAgain === null) {
+    if(stats === null || stats.timeToPlayAgain === undefined) {
       this.gameService.resetStorage();
     }
 
