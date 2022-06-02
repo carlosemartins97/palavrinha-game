@@ -5,7 +5,7 @@ import { formatHour } from 'src/assets/utils/format';
 import { words } from 'src/assets/words/words';
 import { GameService } from '../game.service';
 import { InputLetterComponent } from './input-letter/input-letter.component';
-import { StatsService } from './stats.service';
+import { Stats, StatsService } from './stats.service';
 
 @Component({
   selector: 'app-game',
@@ -40,8 +40,8 @@ export class GameComponent implements OnInit {
     this.level = this.gameService.getLevel();
     this.wrongLetters = this.gameService.getWrongLetters();
 
-    const stats = localStorage.getItem('@palavrinha/stats');
-    if(stats === null) {
+    const stats: Stats = JSON.parse(localStorage.getItem('@palavrinha/stats')!);
+    if(stats === null || stats.timeToPlayAgain === null) {
       this.gameService.resetStorage();
     }
 
