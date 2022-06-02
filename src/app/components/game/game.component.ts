@@ -27,13 +27,14 @@ export class GameComponent implements OnInit {
   subscription: Subscription;
   showNewLevelButton: boolean = false;
   showResetLevelButton: boolean = false;
-  wrongLetters: any = this.gameService.getWrongLetters();
+  wrongLetters: any;
 
   ngOnInit(): void {
     this.gameService.initWord();
     this.tries = this.gameService.getTries();
     this.activeTry = this.tries.length - 1;
     this.level = this.gameService.getLevel();
+    this.wrongLetters = this.gameService.getWrongLetters();
     
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
