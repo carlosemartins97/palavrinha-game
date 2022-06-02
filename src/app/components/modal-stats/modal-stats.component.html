@@ -1,0 +1,46 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Estatísticas</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">Fechar</button>
+  </div>
+  <div class="modal-body">
+    <div class="info">
+      <div class="info__box">
+        <p class="info__box__number">{{level}}</p>
+        <p>nível atual</p>
+      </div>
+
+      <div class="info__box">
+        <p class="info__box__number">{{stats.reset}}</p>
+        <p>rodadas perdidas</p>
+      </div>
+
+      <div class="info__box">
+        <p class="info__box__number">{{(((level-1) / (stats.reset + (level-1)) ) * 100).toFixed(2)}}</p>
+        <p>% de vitórias</p>
+      </div>
+
+      <div class="info__box">
+        <p class="info__box__number">{{stats.streak}}</p>
+        <p>sequência atual</p>
+      </div>
+      
+    </div>
+
+    <div class="graph">
+      <h5>Distribuição das tentativas</h5>
+
+      <div class="bar" *ngFor="let item of stats.tries; let i = index">
+        <div class="bar__try">{{i+1}}:</div>
+        <div class="bar__bar" [ngClass]="{'noTry': item.try === 0}" [ngStyle]="{'max-width': item.try !== 0 ? (item.try/(level-1))*100+'%' : '5%'}"><span>{{item.try}}</span></div>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+<div class="stats">
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+    <fa-icon [icon]="faChartSimple" size="lg"></fa-icon>
+  </button>
+</div>

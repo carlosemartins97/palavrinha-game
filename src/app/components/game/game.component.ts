@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { words } from 'src/assets/words/words';
 import { GameService } from '../game.service';
 import { InputLetterComponent } from './input-letter/input-letter.component';
+import { StatsService } from './stats.service';
 
 @Component({
   selector: 'app-game',
@@ -12,7 +13,7 @@ import { InputLetterComponent } from './input-letter/input-letter.component';
 })
 export class GameComponent implements OnInit {
 
-  constructor(private gameService: GameService, private router: Router) {
+  constructor(private gameService: GameService, private router: Router, private stats: StatsService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
 
@@ -58,6 +59,7 @@ export class GameComponent implements OnInit {
   }
 
   setLevel() {
+    this.stats.setTryStats(this.tries);
     setTimeout(() => {
       this.showNewLevelButton = true;
     }, 300)
@@ -66,6 +68,9 @@ export class GameComponent implements OnInit {
   changeLevel() {
     this.router.navigate(['/']);
     this.gameService.clearTries();
+    this.gameService.initWrongLetters();
+
+    this.showResetLevelButton && this.stats.setResetStats();
   }
 
   ngOnDestroy() {

@@ -1,0 +1,112 @@
+@import 'colors';
+
+.stats {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    color: $green;
+    font-weight: 900;
+    font-size: 28px;
+    height: 60px;
+    border: none;
+
+    &:hover, &:focus {
+      background: unset;
+      color: $white;
+      box-shadow: unset;
+    }
+  }
+}
+
+::ng-deep .modal-stats {
+  max-width: 720px;
+
+  .modal-title,
+  .modal-body,
+  .modal-content {
+    color: $dark;
+
+    p {
+      margin-bottom: 8px;
+    }
+  }
+
+  .modal-header {
+    align-items: center;
+    .btn-close {
+      background: $dark2;
+      color: $white;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 8px 16px;
+      border: none;
+    }
+  }
+
+  .modal-body {
+
+    p {
+      margin: 0;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+
+      &__box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        &__number {
+          font-weight: bold;
+          font-size: 24px;
+        }
+      }
+    }
+
+    .graph {
+      margin-top: 32px;
+
+      h5 {
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .bar {
+        display: flex;
+        margin-bottom: 8px;
+
+        &__try {
+          font-weight: bold;
+          font-size: 14px;
+          margin-right: 8px;
+        }
+
+        &__bar {
+          font-size: 14px;
+          background: $green;
+          width: 100%;
+          text-align: right;
+          span {
+            padding: 0 8px;
+            color: $white;
+            font-weight: bold;
+          }
+
+          &.noTry {
+            span {
+              padding-left: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

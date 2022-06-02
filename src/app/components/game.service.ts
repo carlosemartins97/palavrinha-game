@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import {words} from 'src/assets/words/words';
+import { StatsService } from './game/stats.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,14 @@ export class GameService {
   matchButtonClicked = new EventEmitter<number>();
   newTryClicked = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private stats: StatsService) { }
 
   initWord() {
     if(this.getLevel() === 1 || this.getLevel() === 0) {
       this.setLevel(1);
       this.newTry();
       this.initWrongLetters();
+      this.stats.setTryStats();
     }
   }
 
@@ -96,7 +98,6 @@ export class GameService {
       if(!letters.wrongLetters.includes(letter)) {
         letters.wrongLetters.push(letter);
       }
-      console.log(letters);
       localStorage.setItem('@palavrinha/wrongLetters', JSON.stringify(letters));
     }
   }

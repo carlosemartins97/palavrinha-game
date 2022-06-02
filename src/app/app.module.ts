@@ -9,6 +9,7 @@ import { TecladoComponent } from './components/game/teclado/teclado.component';
 import { InputLetterComponent } from './components/game/input-letter/input-letter.component';
 import { ModalInstrucoesComponent } from './components/modal-instrucoes/modal-instrucoes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalStatsComponent } from './components/modal-stats/modal-stats.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     GameComponent,
     TecladoComponent,
     InputLetterComponent,
-    ModalInstrucoesComponent
+    ModalInstrucoesComponent,
+    ModalStatsComponent
   ],
   imports: [
     BrowserModule,
