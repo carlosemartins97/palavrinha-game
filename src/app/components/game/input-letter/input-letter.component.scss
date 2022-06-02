@@ -31,13 +31,19 @@
       text-transform: uppercase;
     }
 
-    @media(max-width: 768px) {
-      height: 36px;
-      width: 36px;
+    @media(max-width: 1400px) {
+      width: 40px;
+      height: 40px;
 
       &__letra {
         font-size: 24px;
       }
+    } 
+
+    @media(max-width: 768px) {
+      height: 36px;
+      width: 36px;
+      
     }
   }
   
