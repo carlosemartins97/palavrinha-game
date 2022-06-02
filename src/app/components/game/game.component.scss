@@ -142,6 +142,11 @@
             background: $red;
             color: $white;
           }
+
+          &:disabled {
+            background: $gray;
+            color: $dark2;
+          }
         }
 
         @media(max-width: 768px) {

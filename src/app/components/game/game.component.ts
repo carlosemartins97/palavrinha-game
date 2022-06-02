@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { formatHour } from 'src/assets/utils/format';
 import { words } from 'src/assets/words/words';
 import { GameService } from '../game.service';
 import { InputLetterComponent } from './input-letter/input-letter.component';
@@ -28,6 +29,8 @@ export class GameComponent implements OnInit {
   subscription: Subscription;
   showNewLevelButton: boolean = false;
   showResetLevelButton: boolean = false;
+  blockPlay: boolean = false;
+  hourToPlay: string;
   wrongLetters: any;
 
   ngOnInit(): void {
@@ -41,13 +44,30 @@ export class GameComponent implements OnInit {
     if(stats === null) {
       this.gameService.resetStorage();
     }
-    
+
+    this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
+    this.hourToPlay = formatHour(new Date(this.stats.getStats().timeToPlayAgain! + (60000 * this.stats.minutesToBlockPlayButton)));
+
+    if(this.blockPlay) {
+      setInterval(() => {
+        this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
+      }, 1000)
+    }
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
       if(this.tries.length === 5) {
-        setTimeout(() => {
-          this.showResetLevelButton = true;
-        }, 300)
+        this.stats.setResetStats();
+        this.showResetLevelButton = true;
+        this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
+        this.hourToPlay = formatHour(new Date(this.stats.getStats().timeToPlayAgain! + (60000 * this.stats.minutesToBlockPlayButton)));
+
+        setInterval(() => {
+          this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
+        }, 1000)
+        
+
+        
+        
       } else {
         level === this.level && setTimeout(() => {
           this.tries = this.gameService.getTries();
@@ -74,8 +94,6 @@ export class GameComponent implements OnInit {
     this.router.navigate(['/']);
     this.gameService.clearTries();
     this.gameService.initWrongLetters();
-
-    this.showResetLevelButton && this.stats.setResetStats();
   }
 
   ngOnDestroy() {

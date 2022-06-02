@@ -4,12 +4,15 @@ export interface Stats {
   reset: number;
   streak: number;
   tries: {try: number}[],
+  timeToPlayAgain?: number,
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatsService {
+
+  minutesToBlockPlayButton = 15; //minutos para bloquear o botão de play após errar uma palavra.
 
   constructor() { }
 
@@ -38,7 +41,8 @@ export class StatsService {
           {try: 0},
           {try: 0},
           {try: 0},
-        ]
+        ],
+        timeToPlayAgain: 0,
       };
       localStorage.setItem('@palavrinha/stats', JSON.stringify(statsObj));
     }
@@ -51,8 +55,29 @@ export class StatsService {
       const stats: Stats = JSON.parse(statsWithoutParse);
       stats.reset += 1;
       stats.streak = 0;
+      stats.timeToPlayAgain = Date.now();
       localStorage.setItem('@palavrinha/stats', JSON.stringify(stats));
     }
   }
+
+  compareDate() {
+    const statsWithoutParse = localStorage.getItem('@palavrinha/stats');
+    const dateNow: any = new Date(Date.now());
+
+    if(statsWithoutParse !== null) {
+      const stats: Stats = JSON.parse(statsWithoutParse);
+
+      const dateOld: any = new Date(stats.timeToPlayAgain!);
+
+       
+      if(Math.abs(dateNow - dateOld) / (60*1000) >= this.minutesToBlockPlayButton) {
+        return true
+      } else {
+        return false;
+      }
+    } return true;
+  }
+
+
   
 }

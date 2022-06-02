@@ -33,11 +33,11 @@
         ></app-teclado>
       </div>
       <div class="game-container__content__controls__enter">
-        <button type="button" class="enter" (click)="matchWords()" *ngIf="!showResetLevelButton && !showNewLevelButton">enter</button>
+        <button type="button" class="enter" (click)="matchWords()" *ngIf="!showResetLevelButton && !showNewLevelButton" [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'enter'}}</button>
 
-        <button class="enter next" (click)="changeLevel()" *ngIf="showNewLevelButton">Próximo Level</button>
+        <button class="enter next" (click)="changeLevel()" *ngIf="showNewLevelButton" [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'Próximo Level'}}</button>
 
-        <button class="enter try" (click)="changeLevel()" *ngIf="showResetLevelButton" >Tentar novamente</button>
+        <button class="enter try" (click)="changeLevel()" *ngIf="showResetLevelButton" [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'Tentar Novamente'}}</button>
       </div>
     </div>
   </div>
