@@ -114,4 +114,13 @@ export class GameService {
     const letters = localStorage.getItem('@palavrinha/wrongLetters');
     return JSON.parse(letters!);
   }
+
+  resetStorage() {
+    localStorage.removeItem('@palavrinha/wrongLetters');
+    localStorage.removeItem('@palavrinha/stats');
+    localStorage.removeItem('@palavrinha/tries');
+    this.newTry();
+    this.initWrongLetters();
+    this.stats.setTryStats();
+  }
 }

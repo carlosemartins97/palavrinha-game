@@ -36,6 +36,11 @@ export class GameComponent implements OnInit {
     this.activeTry = this.tries.length - 1;
     this.level = this.gameService.getLevel();
     this.wrongLetters = this.gameService.getWrongLetters();
+
+    const stats = localStorage.getItem('@palavrinha/stats');
+    if(stats === null) {
+      this.gameService.resetStorage();
+    }
     
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
