@@ -61,12 +61,11 @@ export class GameComponent implements OnInit {
         this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
         this.hourToPlay = formatHour(new Date(this.stats.getStats().timeToPlayAgain! + (60000 * this.stats.minutesToBlockPlayButton)));
 
-        setInterval(() => {
-          this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
-        }, 1000)
-        
-
-        
+        if(this.blockPlay) {
+          setInterval(() => {
+            this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
+          }, 1000)
+        }
         
       } else {
         level === this.level && setTimeout(() => {
