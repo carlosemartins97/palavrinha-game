@@ -41,7 +41,7 @@ export class GameComponent implements OnInit {
       if(this.tries.length === 5) {
         setTimeout(() => {
           this.showResetLevelButton = true;
-        }, 600)
+        }, 300)
       } else {
         level === this.level && setTimeout(() => {
           this.tries = this.gameService.getTries();
@@ -60,7 +60,7 @@ export class GameComponent implements OnInit {
   setLevel() {
     setTimeout(() => {
       this.showNewLevelButton = true;
-    }, 600)
+    }, 300)
   }
 
   changeLevel() {
