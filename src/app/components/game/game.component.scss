@@ -124,8 +124,18 @@
           border: none;
           transition: all 0.3s;
         
-          &:hover {
+          &:hover, &:focus {
             filter: brightness(0.8);
+          }
+
+          &.next {
+            background: $purple;
+            color: $white;
+          }
+
+          &.try {
+            background: $red;
+            color: $white;
           }
         }
 

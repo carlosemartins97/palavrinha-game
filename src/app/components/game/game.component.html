@@ -9,13 +9,13 @@
 
     <p class="game-container__content__level">Level <strong>{{level}}</strong> de <strong>{{totalOfLevels}}</strong></p>
 
-    <div class="game-container__content__buttonLevel" *ngIf="showNewLevelButton">
+    <!-- <div class="game-container__content__buttonLevel" *ngIf="showNewLevelButton">
       <button (click)="changeLevel()">Próximo Level</button>
     </div>
 
     <div class="game-container__content__buttonLevel" *ngIf="showResetLevelButton">
       <button (click)="changeLevel()" class="tryagain">Tentar novamente</button>
-    </div>
+    </div> -->
 
     <app-input-letter
       *ngFor="let try of tries; let i = index"
@@ -31,9 +31,11 @@
         ></app-teclado>
       </div>
       <div class="game-container__content__controls__enter">
-        <button type="button" class="enter" (click)="matchWords()">
-          enter
-        </button>
+        <button type="button" class="enter" (click)="matchWords()" *ngIf="!showResetLevelButton && !showNewLevelButton">enter</button>
+
+        <button class="enter next" (click)="changeLevel()" *ngIf="showNewLevelButton">Próximo Level</button>
+
+        <button class="enter try" (click)="changeLevel()" *ngIf="showResetLevelButton" >Tentar novamente</button>
       </div>
     </div>
   </div>
