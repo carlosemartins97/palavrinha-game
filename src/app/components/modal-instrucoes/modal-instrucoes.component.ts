@@ -22,7 +22,7 @@ export class ModalInstrucoesComponent implements OnInit {
   }
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', modalDialogClass: 'modal-instrucoes'}).result;
   }
 
 }
