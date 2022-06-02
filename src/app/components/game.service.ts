@@ -15,9 +15,7 @@ export class GameService {
   constructor() { }
 
   initWord() {
-    const word = localStorage.getItem('@palavrinha/word');
-    if(word === null) {
-      this.setWord(1);
+    if(this.getLevel() === 1) {
       this.setLevel(1);
       this.newTry();
       this.initWrongLetters();
@@ -25,7 +23,7 @@ export class GameService {
   }
 
   getWord() {
-    return localStorage.getItem('@palavrinha/word');
+    return words[this.getLevel() - 1];
   }
 
   getLevel() {
@@ -35,15 +33,8 @@ export class GameService {
   nextLevel() {
     const currentLevel = this.getLevel();
     this.setLevel(currentLevel + 1);
-    this.setWord(currentLevel + 1);
     this.clearTries();
     this.clearLetters();
-  }
-
-  setWord(indice: number) {
-    if(indice < words.length) {
-      localStorage.setItem('@palavrinha/word', words[indice-1]);
-    }
   }
 
   setLevel(indice: number) {
