@@ -16,13 +16,13 @@ export class GameComponent implements OnInit {
 
   constructor(private gameService: GameService, private router: Router, private stats: StatsService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-   }
+  }
 
   tries:
     {
-    tentativa: number,
-    word: string[]
-  }[]
+      tentativa: number,
+      word: string[]
+    }[]
   level: number;
   totalOfLevels: number = words.length;
   activeTry: number;
@@ -41,32 +41,34 @@ export class GameComponent implements OnInit {
     this.wrongLetters = this.gameService.getWrongLetters();
 
     const stats: Stats = JSON.parse(localStorage.getItem('@palavrinha/stats')!);
-    if(stats === null || stats.timeToPlayAgain === undefined) {
+    if (stats === null || stats.timeToPlayAgain === undefined) {
       this.gameService.resetStorage();
     }
 
     this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
     this.hourToPlay = formatHour(new Date(this.stats.getStats().timeToPlayAgain! + (60000 * this.stats.minutesToBlockPlayButton)));
 
-    if(this.blockPlay) {
+    if (this.blockPlay) {
       setInterval(() => {
         this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
       }, 1000)
+    } else {
+      this.tries[0].word[0] !== '' && this.gameService.newTryClicked.emit(this.level);
     }
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
-      if(this.tries.length === 5) {
+      if (this.tries.length === 5) {
         this.stats.setResetStats();
         this.showResetLevelButton = true;
         this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
         this.hourToPlay = formatHour(new Date(this.stats.getStats().timeToPlayAgain! + (60000 * this.stats.minutesToBlockPlayButton)));
 
-        if(this.blockPlay) {
+        if (this.blockPlay) {
           setInterval(() => {
             this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
           }, 1000)
         }
-        
+
       } else {
         level === this.level && setTimeout(() => {
           this.tries = this.gameService.getTries();
@@ -74,11 +76,11 @@ export class GameComponent implements OnInit {
         }, 600)
       }
     });
-    
+
   }
 
   matchWords() {
-    this.gameService.matchButtonClicked.emit(this.tries.length-1);
+    this.gameService.matchButtonClicked.emit(this.tries.length - 1);
     this.wrongLetters = this.gameService.getWrongLetters();
   }
 

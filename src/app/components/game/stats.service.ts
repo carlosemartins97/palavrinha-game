@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export interface Stats {
   reset: number;
   streak: number;
-  tries: {try: number}[],
+  tries: { try: number }[],
   timeToPlayAgain?: number,
 }
 
@@ -12,7 +12,7 @@ export interface Stats {
 })
 export class StatsService {
 
-  minutesToBlockPlayButton = 15; //minutos para bloquear o botão de play após errar uma palavra.
+  minutesToBlockPlayButton = 1; //minutos para bloquear o botão de play após errar uma palavra.
 
   constructor() { }
 
@@ -21,26 +21,26 @@ export class StatsService {
     return statsWithoutParse && JSON.parse(statsWithoutParse);
   }
 
-  setTryStats(tries?: {tentativa: number, word: string[] }[] ) {
+  setTryStats(tries?: { tentativa: number, word: string[] }[]) {
     const statsWithoutParse = localStorage.getItem('@palavrinha/stats');
 
-    if(statsWithoutParse !== null && tries) {
+    if (statsWithoutParse !== null && tries) {
       const stats: Stats = JSON.parse(statsWithoutParse);
 
-      stats.tries[tries.length-1].try += 1;
+      stats.tries[tries.length - 1].try += 1;
       stats.streak += 1;
       localStorage.setItem('@palavrinha/stats', JSON.stringify(stats));
-      
-    } else if(statsWithoutParse === null) {
+
+    } else if (statsWithoutParse === null) {
       const statsObj: Stats = {
         reset: 0,
         streak: 0,
         tries: [
-          {try: 0},
-          {try: 0},
-          {try: 0},
-          {try: 0},
-          {try: 0},
+          { try: 0 },
+          { try: 0 },
+          { try: 0 },
+          { try: 0 },
+          { try: 0 },
         ],
         timeToPlayAgain: 0,
       };
@@ -51,7 +51,7 @@ export class StatsService {
   setResetStats() {
     const statsWithoutParse = localStorage.getItem('@palavrinha/stats');
 
-    if(statsWithoutParse !== null) {
+    if (statsWithoutParse !== null) {
       const stats: Stats = JSON.parse(statsWithoutParse);
       stats.reset += 1;
       stats.streak = 0;
@@ -64,13 +64,13 @@ export class StatsService {
     const statsWithoutParse = localStorage.getItem('@palavrinha/stats');
     const dateNow: any = new Date(Date.now());
 
-    if(statsWithoutParse !== null) {
+    if (statsWithoutParse !== null) {
       const stats: Stats = JSON.parse(statsWithoutParse);
 
       const dateOld: any = new Date(stats.timeToPlayAgain!);
 
-       
-      if(Math.abs(dateNow - dateOld) / (60*1000) >= this.minutesToBlockPlayButton) {
+
+      if (Math.abs(dateNow - dateOld) / (60 * 1000) >= this.minutesToBlockPlayButton) {
         return true
       } else {
         return false;
@@ -79,5 +79,5 @@ export class StatsService {
   }
 
 
-  
+
 }
