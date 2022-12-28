@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
         this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
       }, 1000)
     } else {
-      this.tries[0].word[0] !== '' && this.changeLevel();
+      this.activeTry === 5 && this.tries[4]?.word[0] !== '' && (this.showResetLevelButton = true);
     }
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
