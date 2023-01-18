@@ -35,7 +35,7 @@ export class TecladoComponent implements OnInit {
     const mergedLettersArray = this.firstKeys.concat(this.secondKeys).concat(this.thirdKeys);
 
     if (!this.blockPlay) {
-      if (mergedLettersArray.includes(event.key) && !this.wrongLetters.wrongLetters.includes(event.key.toUpperCase())) {
+      if (mergedLettersArray.includes(event.key.toLowerCase()) && !this.wrongLetters.wrongLetters.includes(event.key.toUpperCase())) {
         this.setKey(event.key);
       } else if (event.key === 'Backspace') {
         this.onErase();
