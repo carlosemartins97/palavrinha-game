@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import {words} from 'src/assets/words/words';
+import { words } from 'src/assets/words/words';
 import { StatsService } from './game/stats.service';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class GameService {
   constructor(private stats: StatsService) { }
 
   initWord() {
-    if(this.getLevel() === 1 || this.getLevel() === 0) {
+    if (this.getLevel() === 0) {
       this.setLevel(1);
       this.newTry();
       this.initWrongLetters();
@@ -40,7 +40,7 @@ export class GameService {
   }
 
   setLevel(indice: number) {
-    if(indice < words.length) {
+    if (indice < words.length) {
       localStorage.setItem('@palavrinha/level', String(indice));
       this.level.emit(indice);
     }
@@ -48,11 +48,11 @@ export class GameService {
 
   getTries() {
     const triesWithoutParse = localStorage.getItem('@palavrinha/tries');
-    if(triesWithoutParse !== null) {
-      const tries: [{tentativa: number, word: string[]}] = JSON.parse(triesWithoutParse);
+    if (triesWithoutParse !== null) {
+      const tries: [{ tentativa: number, word: string[] }] = JSON.parse(triesWithoutParse);
       return tries;
     } else {
-      return [{tentativa: 1, word: []}]
+      return [{ tentativa: 1, word: [] }]
     }
   }
 
@@ -63,21 +63,21 @@ export class GameService {
 
   newTry(word?: string[], color?: string[]) {
     const triesWithoutParse = localStorage.getItem('@palavrinha/tries');
-    if(triesWithoutParse !== null && word) {
+    if (triesWithoutParse !== null && word) {
       const tries = JSON.parse(triesWithoutParse);
       const triesLength = tries.length;
-      if(triesLength < 5) {
-        tries[triesLength-1].word = word;
-        tries[triesLength-1].color = color;
-        const newTry = tries[triesLength-1].tentativa + 1;
-        const newTryObject =  {
+      if (triesLength < 5) {
+        tries[triesLength - 1].word = word;
+        tries[triesLength - 1].color = color;
+        const newTry = tries[triesLength - 1].tentativa + 1;
+        const newTryObject = {
           tentativa: newTry,
           word: [],
         }
         localStorage.setItem('@palavrinha/tries', JSON.stringify([...tries, newTryObject]));
-      } else if(triesLength === 5) {
-        tries[triesLength-1].word = word;
-        tries[triesLength-1].color = color;
+      } else if (triesLength === 5) {
+        tries[triesLength - 1].word = word;
+        tries[triesLength - 1].color = color;
         const newTryObject = [...tries]
         localStorage.setItem('@palavrinha/tries', JSON.stringify(newTryObject));
       }
@@ -93,9 +93,9 @@ export class GameService {
 
   saveWrongLetters(letter?: string) {
     const letterWithoutParse = localStorage.getItem('@palavrinha/wrongLetters');
-    if(letterWithoutParse !== null && letter) {
+    if (letterWithoutParse !== null && letter) {
       const letters: any = JSON.parse(letterWithoutParse);
-      if(!letters.wrongLetters.includes(letter)) {
+      if (!letters.wrongLetters.includes(letter)) {
         letters.wrongLetters.push(letter);
       }
       localStorage.setItem('@palavrinha/wrongLetters', JSON.stringify(letters));
@@ -103,7 +103,7 @@ export class GameService {
   }
 
   initWrongLetters() {
-    localStorage.setItem('@palavrinha/wrongLetters', JSON.stringify({wrongLetters: []}));
+    localStorage.setItem('@palavrinha/wrongLetters', JSON.stringify({ wrongLetters: [] }));
   }
 
   clearLetters() {

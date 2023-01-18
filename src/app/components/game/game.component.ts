@@ -37,6 +37,7 @@ export class GameComponent implements OnInit {
     this.gameService.initWord();
     this.tries = this.gameService.getTries();
     this.activeTry = this.tries.length - 1;
+
     this.level = this.gameService.getLevel();
     this.wrongLetters = this.gameService.getWrongLetters();
 
@@ -50,10 +51,15 @@ export class GameComponent implements OnInit {
 
     if (this.blockPlay) {
       setInterval(() => {
-        this.stats.compareDate() ? this.blockPlay = false : this.blockPlay = true;
+        if (this.stats.compareDate()) {
+          this.blockPlay = false;
+          this.showResetLevelButton = true;
+        } else {
+          this.blockPlay = true
+        }
       }, 1000)
     } else {
-      this.activeTry === 5 && this.tries[4]?.word[0] !== '' && (this.showResetLevelButton = true);
+      this.activeTry === 4 && this.tries[4]?.word[0] !== '' && (this.showResetLevelButton = true);
     }
 
     this.subscription = this.gameService.newTryClicked.subscribe((level: number) => {
