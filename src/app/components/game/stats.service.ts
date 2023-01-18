@@ -12,7 +12,7 @@ export interface Stats {
 })
 export class StatsService {
 
-  minutesToBlockPlayButton = 15; //minutos para bloquear o botão de play após errar uma palavra.
+  minutesToBlockPlayButton = 3; //minutos para bloquear o botão de play após errar uma palavra.
 
   constructor() { }
 

@@ -19,25 +19,23 @@
       <button (click)="changeLevel()" class="tryagain">Tentar novamente</button>
     </div> -->
 
-    <app-input-letter
-      *ngFor="let try of tries; let i = index"
-      [isActive]="i === activeTry"
-      [index]="i"
-      (level)="setLevel()"
-    ></app-input-letter>
+    <app-input-letter *ngFor="let try of tries; let i = index" [isActive]="i === activeTry" [index]="i"
+      (level)="setLevel()"></app-input-letter>
 
     <div class="game-container__content__controls">
       <div class="game-container__content__controls__teclado">
-        <app-teclado
-          [wrongLetters]="wrongLetters"
-        ></app-teclado>
+        <app-teclado [wrongLetters]="wrongLetters" [blockPlay]="blockPlay"
+          (enterPressed)="!showResetLevelButton && !showNewLevelButton && matchWords()"></app-teclado>
       </div>
       <div class="game-container__content__controls__enter">
-        <button type="button" class="enter" (click)="matchWords()" *ngIf="!showResetLevelButton && !showNewLevelButton" [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'enter'}}</button>
+        <button type="button" class="enter" (click)="matchWords()" *ngIf="!showResetLevelButton && !showNewLevelButton"
+          [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'enter'}}</button>
 
-        <button class="enter next" (click)="changeLevel()" *ngIf="showNewLevelButton" [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'Próximo Level'}}</button>
+        <button class="enter next" (click)="changeLevel()" *ngIf="showNewLevelButton" [disabled]="blockPlay">{{blockPlay
+          ? 'Indisponível até '+hourToPlay : 'Próximo Level'}}</button>
 
-        <button class="enter try" (click)="changeLevel()" *ngIf="showResetLevelButton" [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'Tentar Novamente'}}</button>
+        <button class="enter try" (click)="changeLevel()" *ngIf="showResetLevelButton"
+          [disabled]="blockPlay">{{blockPlay ? 'Indisponível até '+hourToPlay : 'Tentar Novamente'}}</button>
       </div>
     </div>
   </div>

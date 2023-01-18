@@ -1,12 +1,15 @@
 <div class="teclado">
   <div class="teclado__first">
-    <button *ngFor="let btn of firstKeys; let i = index" type="button" id="bt_{{btn}}" #element (click)="setKey(element)" [disabled]="wrongLetters && wrongLetters.wrongLetters.includes(btn.toUpperCase())">{{btn}}</button>
+    <button *ngFor="let btn of firstKeys; let i = index" type="button" id="bt_{{btn}}" #element (click)="setKey(btn)"
+      [disabled]="wrongLetters && wrongLetters.wrongLetters.includes(btn.toUpperCase())">{{btn}}</button>
   </div>
   <div class="teclado__second">
-    <button *ngFor="let btn of secondKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(element)" [disabled]="wrongLetters && wrongLetters.wrongLetters.includes(btn.toUpperCase())">{{btn}}</button>
+    <button *ngFor="let btn of secondKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(btn)"
+      [disabled]="wrongLetters && wrongLetters.wrongLetters.includes(btn.toUpperCase())">{{btn}}</button>
   </div>
   <div class="teclado__third">
-    <button *ngFor="let btn of thirdKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(element)" [disabled]="wrongLetters && wrongLetters.wrongLetters.includes(btn.toUpperCase())">{{btn}}</button>
+    <button *ngFor="let btn of thirdKeys" type="button" id="bt_{{btn}}" #element (click)="setKey(btn)"
+      [disabled]="wrongLetters && wrongLetters.wrongLetters.includes(btn.toUpperCase())">{{btn}}</button>
     <button type="button" id="bt_back" (click)="onErase()">
       <img src="assets/img/delete.png" alt="delete icon">
     </button>
