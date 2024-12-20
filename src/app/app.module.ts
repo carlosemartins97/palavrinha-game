@@ -10,6 +10,7 @@ import { InputLetterComponent } from './components/game/input-letter/input-lette
 import { ModalInstrucoesComponent } from './components/modal-instrucoes/modal-instrucoes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalStatsComponent } from './components/modal-stats/modal-stats.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ModalStatsComponent } from './components/modal-stats/modal-stats.compon
     NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
+    IonicModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

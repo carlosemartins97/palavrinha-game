@@ -22,7 +22,8 @@
     "@fortawesome/angular-fontawesome": "^0.10.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "@ionic/angular": "^6.7.5",
+    "@ng-bootstrap/ng-bootstrap": "^11.0.0",
     "angular-cli-ghpages": "^1.0.0",
     "bootstrap": "^4.5.0",
     "prettier": "^2.6.2",
@@ -42,6 +43,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.6.4"
+    "typescript": "~4.6.4",
+    "@ionic/angular-toolkit": "latest"
   }
 }
