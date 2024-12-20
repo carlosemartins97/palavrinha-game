@@ -19,6 +19,9 @@
     "@angular/platform-browser": "~13.4.0",
     "@angular/platform-browser-dynamic": "~13.4.0",
     "@angular/router": "~13.4.0",
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/cli": "^6.2.0",
+    "@capacitor/core": "^6.2.0",
     "@fortawesome/angular-fontawesome": "^0.10.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
@@ -35,6 +38,7 @@
     "@angular-devkit/build-angular": "~13.3.11",
     "@angular/cli": "~13.3.11",
     "@angular/compiler-cli": "~13.4.0",
+    "@ionic/angular-toolkit": "latest",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.8.0",
@@ -43,7 +47,6 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.6.4",
-    "@ionic/angular-toolkit": "latest"
+    "typescript": "~4.6.4"
   }
 }
