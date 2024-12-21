@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "sync": "npx capacitor-assets generate && npx cap sync && npx cap sync android && npx cap open android",
+    "sync:all": "rm -rf android && npx cap add android && npm run sync"
   },
   "private": true,
   "dependencies": {
@@ -20,8 +22,11 @@
     "@angular/platform-browser-dynamic": "~13.4.0",
     "@angular/router": "~13.4.0",
     "@capacitor/android": "^6.2.0",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^6.2.0",
     "@capacitor/core": "^6.2.0",
+    "@capacitor/screen-orientation": "^6.0.3",
+    "@capacitor/splash-screen": "^6.0.3",
     "@fortawesome/angular-fontawesome": "^0.10.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
