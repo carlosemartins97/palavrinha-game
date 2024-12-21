@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 
 
@@ -13,5 +14,6 @@ export class AppComponent {
 
   async ngOnInit() {
     ScreenOrientation.lock({orientation: 'portrait'});
+    SplashScreen.hide();
   }
 }
