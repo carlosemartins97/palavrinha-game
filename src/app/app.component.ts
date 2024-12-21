@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ScreenOrientation } from '@capacitor/screen-orientation';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'palavrinha-game';
+
+  async ngOnInit() {
+    ScreenOrientation.lock({orientation: 'portrait'});
+  }
 }
